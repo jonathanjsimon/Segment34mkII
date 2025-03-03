@@ -24,13 +24,9 @@ class Segment34View extends WatchUi.WatchFace {
     private var batt = 0;
     private var stress = 0;
     private var weatherCondition = null;
-
-    // as per the User's configured sleep and wake times
     private var nightMode = false;
-
     private var ledSmallFont = null;
     private var ledMidFont = null;
-
     private var dbackground = null;
     private var dSecondsLabel = null;
     private var dAodPattern = null;
@@ -79,6 +75,7 @@ class Segment34View extends WatchUi.WatchFace {
     private var propDateAlignment = null;
     private var propIcon1 = null;
     private var propIcon2 = null;
+    private var propHemisphere = null;
 
     function initialize() {
         WatchFace.initialize();
@@ -118,11 +115,8 @@ class Segment34View extends WatchUi.WatchFace {
                 updateWeather();
             }
 
-            if (updateNightMode())
-            {
-                lastUpdate = null;
+            if (updateNightMode()){
                 previousEssentialsVis = null;
-                WatchUi.requestUpdate();
             }
         }
 
@@ -288,6 +282,7 @@ class Segment34View extends WatchUi.WatchFace {
         propDateAlignment = Application.Properties.getValue("dateAlignment");
         propIcon1 = Application.Properties.getValue("icon1");
         propIcon2 = Application.Properties.getValue("icon2");
+        propHemisphere = Application.Properties.getValue("hemisphere");
 
         var fontVariant = Application.Properties.getValue("smallFontVariant");
         if(fontVariant == 0) {
@@ -499,13 +494,7 @@ class Segment34View extends WatchUi.WatchFace {
     hidden function getColor(colorName) as Graphics.ColorType {
         var amoled = canBurnIn;
 
-        var themeToUse = propColorTheme;
-        if (propNightColorTheme != -1 && nightMode)
-        {
-            themeToUse = propNightColorTheme;
-        }
-
-        if(themeToUse == 0) { // Yellow on turquiose
+        if(propColorTheme == 0) { // Yellow on turquiose
             if(colorName.equals("fieldBg")) {
                 if(amoled) { return 0x0e333c; }
                 return 0x005555;
@@ -1027,6 +1016,36 @@ class Segment34View extends WatchUi.WatchFace {
                 if(amoled) { return 0xe3efd2; }
                 return 0xFFFFFF;
             }
+        } else if(themeToUse == 20) { // red on black
+            if(colorName.equals("fieldBg")) {
+                if(amoled) { return 0x282828; }
+                return 0x555555;
+            } else if(colorName.equals("fieldLabel")) {
+                return 0xFF0000;
+            } else if(colorName.equals("timeBg")) {
+                if(amoled) { return 0x282828; }
+                return 0x555555;
+            } else if(colorName.equals("timeDisplay")) {
+                return 0xFF0000;
+            } else if(colorName.equals("dateDisplay")) {
+                return 0xFFFFFF;
+            } else if(colorName.equals("dateDisplayDim")) {
+                return 0x555555;
+            } else if(colorName.equals("dawnDuskLabel")) {
+                return 0xFF0000;
+            } else if(colorName.equals("dawnDuskValue")) {
+                return 0xFFFFFF;
+            } else if(colorName.equals("notifications")) {
+                return 0x55AAFF;
+            } else if(colorName.equals("stress")) {
+                return 0xFF5555;
+            } else if(colorName.equals("bodybattery")) {
+                return 0x55AAFF;
+            } else if(colorName.equals("background")) {
+                return 0x000000;
+            } else if(colorName.equals("valueDisplay")) {
+                return 0xFFFFFF;
+            }
         }
 
         if(colorName.equals("lowBatt")) {
@@ -1116,16 +1135,16 @@ class Segment34View extends WatchUi.WatchFace {
     }
 
     hidden function updateWeather() as Void {
-        if(Weather.getCurrentConditions != null) {
-            weatherCondition = Weather.getCurrentConditions();
-        }
-
         var now = Time.now().value();
         // Clear cached weather if older than 3 hours
-        if(weatherCondition != null 
-           and weatherCondition.observationTime != null 
+        if(weatherCondition != null
+           and weatherCondition.observationTime != null
            and (now - weatherCondition.observationTime.value() > 3600 * 3)) {
             weatherCondition = null;
+        }
+
+        if(Weather.getCurrentConditions != null) {
+            weatherCondition = Weather.getCurrentConditions();
         }
     }
 
@@ -1563,8 +1582,7 @@ class Segment34View extends WatchUi.WatchFace {
         var wakeTime = profile.wakeTime;
         var sleepTime = profile.sleepTime;
 
-        if (wakeTime == null || sleepTime == null)
-        {
+        if (wakeTime == null || sleepTime == null) {
             nightMode = false;
             return (oldNightMode != nightMode);
         }
@@ -2425,9 +2443,7 @@ class Segment34View extends WatchUi.WatchFace {
     function getPrecip() as String {
         var ret = "";
         if(weatherCondition != null and weatherCondition.precipitationChance != null) {
-            if(weatherCondition.precipitationChance > 0) {
-                ret = Lang.format("$1$%", [weatherCondition.precipitationChance.format("%d")]);
-            }
+            ret = Lang.format("$1$%", [weatherCondition.precipitationChance.format("%d")]);
         }
         return ret;
     }
@@ -2572,25 +2588,33 @@ class Segment34View extends WatchUi.WatchFace {
             return "8"; // That's no moon!
         }
 
+        var moonPhase;
         if (into_cycle < 3) { // 2+1
-            return "0";
+            moonPhase = 0;
         } else if (into_cycle < 6) { // 4
-            return "1";
+            moonPhase = 1;
         } else if (into_cycle < 10) { // 4
-            return "2";
+            moonPhase = 2;
         } else if (into_cycle < 14) { // 4
-            return "3";
+            moonPhase = 3;
         } else if (into_cycle < 18) { // 4
-            return "4";
+            moonPhase = 4;
         } else if (into_cycle < 22) { // 4
-            return "5";
+            moonPhase = 5;
         } else if (into_cycle < 26) { // 4
-            return "6";
+            moonPhase = 6;
         } else if (into_cycle < 29) { // 3
-            return "7";
+            moonPhase = 7;
         } else {
-            return "0";
+            moonPhase = 0;
         }
+
+        // If hemisphere is 1 (southern), invert the phase index
+        if (propHemisphere == 1) {
+            moonPhase = (8 - moonPhase) % 8;
+        }
+
+        return moonPhase.toString();
 
     }
 

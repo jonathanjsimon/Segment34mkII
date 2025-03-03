@@ -41,8 +41,23 @@ Lower priority:
 
 
 ## Change log
+2025-03-02 v1.21.1
+- Added red on black color theme
+
+2025-03-02 v1.21.0
+- Setting for hemisphere so the moon can be the right way around, thanks to BrunoCQ
+- Separate theme during sleep hours, thanks to jonathanjsimon
+
+2025-03-01 v1.20.7
+- Fixed issue with precipitation chance being 0
+- Tweaked caching for weather data
+
+2025-02-28 v1.20.6
+- Device support for Enduro added
+
 2025-02-27 v1.20.5
 - Added Move Bar as icon option
+- Cache weather when offline
 
 2025-02-27 v1.20.4
 - Added bluetooth icon as option

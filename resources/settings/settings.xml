@@ -12,6 +12,34 @@
             <listEntry value="18">Green and Orange</listEntry>
             <listEntry value="11">Orange</listEntry>
             <listEntry value="5">Peachy Orange</listEntry>
+            <listEntry value="20">Red</listEntry>
+            <listEntry value="4">White on turquoise</listEntry>
+            <listEntry value="6">White on red</listEntry>
+            <listEntry value="7">White on blue</listEntry>
+            <listEntry value="9">White on orange</listEntry>
+            <listEntry value="12">White on black</listEntry>
+            <listEntry value="13">Black on white (not recommended for AMOLED)</listEntry>
+            <listEntry value="14">Red on white (not recommended for AMOLED)</listEntry>
+            <listEntry value="15">Blue on white (not recommended for AMOLED)</listEntry>
+            <listEntry value="16">Green on white (not recommended for AMOLED)</listEntry>
+            <listEntry value="17">Orange on white (not recommended for AMOLED)</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.nightColorTheme" title="Night Color Theme">
+        <settingConfig type="list">
+            <listEntry value="-1">No change</listEntry>
+            <listEntry value="0">Yellow on turquoise</listEntry>
+            <listEntry value="8">Yellow on blue</listEntry>
+            <listEntry value="1">Hot pink</listEntry>
+            <listEntry value="10">Blue</listEntry>
+            <listEntry value="2">Blueish green</listEntry>
+            <listEntry value="3">Green</listEntry>
+            <listEntry value="19">Green camo</listEntry>
+            <listEntry value="18">Green and Orange</listEntry>
+            <listEntry value="11">Orange</listEntry>
+            <listEntry value="5">Peachy Orange</listEntry>
+            <listEntry value="20">Red</listEntry>
             <listEntry value="4">White on turquoise</listEntry>
             <listEntry value="6">White on red</listEntry>
             <listEntry value="7">White on blue</listEntry>
@@ -148,7 +176,12 @@
                 <listEntry value="2">Lines (highest contrast)</listEntry>
             </settingConfig>
     </setting>
-
+    <setting propertyKey="@Properties.hemisphere" title="Hemisphere (for Moon icon)">
+            <settingConfig type="list">
+                <listEntry value="0">Northern</listEntry>
+                <listEntry value="1">Southern</listEntry>
+            </settingConfig>
+    </setting>
     <setting propertyKey="@Properties.hourFormat" title="Time format (12/24h)">
         <settingConfig type="list">
             <listEntry value="0">Auto - Use system setting</listEntry>
@@ -156,7 +189,6 @@
             <listEntry value="2">12h</listEntry>
         </settingConfig>
     </setting>
-
     <setting propertyKey="@Properties.dateFormat" title="Date format">
         <settingConfig type="list">
             <listEntry value="0">WEEKDAY, DD MONTH YYYY</listEntry>
