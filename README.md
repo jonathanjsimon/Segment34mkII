@@ -24,6 +24,23 @@ https://apps.garmin.com/apps/aa85d03d-ab89-4e06-b8c6-71a014198593
 ## Buy me a coffee (if you want to)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M51A1RGV)
 
+## Contributing (code)
+Pull requests are welcome, but please follow the following guidelines:
+- For larger changes, **please open an issue first** and discuss what you have in mind.
+- Keep PRs small, don't do a lot of different changes at once.
+- Explain what you have changed and why.
+- Only submit code you have actually run and tested (on all supported screen sizes).
+- Remeber that watch faces has to be performant and memory efficient.
+  Changes that significantly increase memory use or degrade performance will be rejected.
+- For optimizations, please provide memory and profiler comparisons.
+- Try to keep the code in the same style as the rest of the project.
+   - Indent with four spaces.
+   - local variables with snake_case.
+   - function and global variables names with camelCase.
+   - cache all properties.
+   - use comments only when they add value.
+     Explain things that look strange or values that has to be looked up to be understood.
+
 ## Builds
  There are some pre-made builds in the builds folder.
 
@@ -41,6 +58,9 @@ Lower priority:
 
 
 ## Change log
+2025-03-03 v1.21.2
+- Options for when to activate night theme
+
 2025-03-02 v1.21.1
 - Added red on black color theme
 
