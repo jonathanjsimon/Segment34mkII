@@ -49,15 +49,60 @@ Pull requests are welcome, but please follow the following guidelines:
  ## TODO / Things people have asked for
 - Goal completion marker
 - Pressure trend
-- GPS Coordinates
+- Custom colors
 
 Lower priority:
 - Race predictions
+- GPS Coordinates (tricky)
 - Localization
 - Option for left/right alignment of values
 
 
 ## Change log
+2025-03-17 v1.25.1
+- Bug with red battery indicator after charging
+
+2025-03-15 v1.25.0
+- New value: Pulse Ox
+- New setting for update frequency for bottom fields (can save some battery life)
+- HR as option for bottom field
+- Fixed bug with icons on white background
+- Bottom field no longer zero padded for consistency with other fields
+
+2025-03-13 v1.24.1
+- Fix for formatting issue with next calendar event, thanks to dariy-vel
+- Active / Total calories, thanks to dariy-vel
+
+2025-03-12 v1.24.0
+- AOD text is always with dot font to prevent burn-in
+- Option to show next calendar event thanks to dariy-vel
+
+2025-03-10 v1.23.0
+- Option to change value in line under clock (the date field)
+- Option to put date as value in other fields
+- Millitary Date Time Group as option
+
+2025-03-09 v.1.22.3
+- Option for hiding labels thanks to vinceskahan
+
+2025-03-08 v.1.22.2
+- Issue with weight lbs label
+
+2025-03-08 v.1.22.1
+- Adjusted purple theme
+
+2025-03-08 v.1.22.0
+- Setting for week offset, adjusts the week number
+- Purple color themes
+- Added a second AOD field
+
+2025-03-06 v1.21.4
+- Option to not zeropad hour on clock
+
+2025-03-06 v1.21.3
+- New value: Next sun event (next sunset or sunrise), thanks to fganglberger
+- Possibly fixed a crash
+
 2025-03-03 v1.21.2
 - Options for when to activate night theme
 
